@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'me.miqhtie'
+version '1.0'
+
+repositories {
+    mavenCentral()
+
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://jitpack.io' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
+    implementation 'com.github.Miqhtiedev:CommandManager:v1.0.0'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'me.miqhtie.deathswap.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

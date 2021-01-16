@@ -1,0 +1,6 @@
+# In seconds
+minSwapTime: 240
+maxSwapTime: 360
+
+# Should players be able to damage other players
+friendlyFire: false
