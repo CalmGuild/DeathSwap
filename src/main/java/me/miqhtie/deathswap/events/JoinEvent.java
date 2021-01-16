@@ -19,8 +19,7 @@ public class JoinEvent implements Listener {
         }
 
         if(!Main.instance.playersInGame.contains(event.getPlayer())) {
-            event.getPlayer().teleport(event.getPlayer().getWorld().getSpawnLocation());
-            event.getPlayer().sendMessage(ChatColor.GOLD +"Sorry! There is already a game going on. Please wait till next round!");
+            event.getPlayer().sendMessage(ChatColor.GOLD + "Sorry! There is already a game going on. Please wait till next round!");
             event.getPlayer().setGameMode(GameMode.SPECTATOR);
         }
     }

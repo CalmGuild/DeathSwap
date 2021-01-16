@@ -28,6 +28,9 @@ public class Main extends JavaPlugin {
     // Give player client time to render in new stuff after swap (around 5 ticks)
     public Boolean renderLock = false;
 
+    public int minSwapTime  = 0;
+    public int maxSwapTime = 0;
+
     private File configFile = new File(getDataFolder(), "config.yml");
     private FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
@@ -44,6 +47,7 @@ public class Main extends JavaPlugin {
         commandManager.registerCommand(new StartCommand("start"));
         commandManager.registerCommand(new EndCommand("end"));
         commandManager.registerCommand(new ConfigCommand("config"));
+        commandManager.registerCommand(new ReviveCommand("revive"));
 
         Bukkit.getPluginManager().registerEvents(new DeathEvent(), this);
         Bukkit.getPluginManager().registerEvents(new RespawnEvent(), this);
@@ -52,6 +56,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockBreakEvent(), this);
         Bukkit.getPluginManager().registerEvents(new DamageEvent(), this);
         Bukkit.getPluginManager().registerEvents(new MoveEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
     }
 
     public void swap(){
@@ -80,7 +85,7 @@ public class Main extends JavaPlugin {
         int x = world.getSpawnLocation().getBlockX();
         int z = world.getSpawnLocation().getBlockZ();
         int minDistance = 50;
-        int maxRange = 500;
+        int maxRange = 1000;
         String players = "@a";
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), String.format("spreadplayers %s %s %s %s %s %s", x, z ,minDistance, maxRange, false, players));
     }
@@ -125,6 +130,7 @@ public class Main extends JavaPlugin {
         }
         Bukkit.broadcastMessage(ChatColor.DARK_RED + "" + ChatColor.MAGIC + "aaa " + ChatColor.RESET + "" + ChatColor.RED + player.getName() + " has died. " + ChatColor.DARK_RED + "" + ChatColor.MAGIC + "aaa ");
         Bukkit.broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + Main.instance.playersInGame.size() + ChatColor.GOLD + " players remain.");
+
         player.setGameMode(GameMode.SPECTATOR);
     }
 

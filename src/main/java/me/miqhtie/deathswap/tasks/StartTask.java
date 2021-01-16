@@ -22,12 +22,14 @@ public class StartTask extends BukkitRunnable {
             p.setGameMode(GameMode.SURVIVAL);
         }
 
-        Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "worldborder set 500");
+//        Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "worldborder set 1000");
         Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "time set 0");
         Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "save-off");
         Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "gamerule spectatorsGenerateChunks false");
 
-        Main.instance.randomTeleport(onlinePlayers.get(0).getWorld());
+        Main.instance.minSwapTime = Main.instance.getConfig().getInt("minSwapTime");
+        Main.instance.maxSwapTime  = Main.instance.getConfig().getInt("maxSwapTime");
+//        Main.instance.randomTeleport(onlinePlayers.get(0).getWorld());
 
         Main.instance.playersInGame = onlinePlayers;
 

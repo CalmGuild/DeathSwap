@@ -14,7 +14,7 @@ public class SwapTask extends BukkitRunnable{
     int countTicks = 0;
     int count = 0;
     int renderLock = 0;
-    int delay = Main.instance.genRnd(Main.instance.getConfig().getInt("minSwapTime"), Main.instance.getConfig().getInt("maxSwapTime"));
+    int delay = Main.instance.genRnd(Main.instance.minSwapTime, Main.instance.maxSwapTime);
 
     @Override
     public void run() {
@@ -44,7 +44,7 @@ public class SwapTask extends BukkitRunnable{
             Main.instance.swap();
             countTicks = 0;
             count = 0;
-            delay = Main.instance.genRnd(Main.instance.getConfig().getInt("minSwapTime"), Main.instance.getConfig().getInt("maxSwapTime"));
+            int delay = Main.instance.genRnd(Main.instance.minSwapTime, Main.instance.maxSwapTime);
         }
     }
 
