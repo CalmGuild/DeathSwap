@@ -84,8 +84,8 @@ public class Main extends JavaPlugin {
     public void randomTeleport(World world) {
         int x = world.getSpawnLocation().getBlockX();
         int z = world.getSpawnLocation().getBlockZ();
-        int minDistance = 50;
-        int maxRange = 1000;
+        int minDistance = 20;
+        int maxRange = 250;
         String players = "@a";
         Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), String.format("spreadplayers %s %s %s %s %s %s", x, z ,minDistance, maxRange, false, players));
     }

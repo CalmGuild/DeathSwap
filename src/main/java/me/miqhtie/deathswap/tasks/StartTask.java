@@ -15,21 +15,27 @@ public class StartTask extends BukkitRunnable {
     public void run() {
         final ArrayList<Player> onlinePlayers = (new ArrayList<>(Bukkit.getOnlinePlayers()));
 
+        World world = null;
         for(Player p  : onlinePlayers) {
+            world = p.getWorld();
             p.sendTitle(ChatColor.GREEN + "The game is now STARTING", "", 0, 40, 0);
             p.setHealth(20);
             p.setSaturation(0);
             p.setGameMode(GameMode.SURVIVAL);
         }
 
-//        Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "worldborder set 1000");
+        if(world != null){
+            world.getWorldBorder().setCenter(world.getSpawnLocation());
+            world.getWorldBorder().setSize(1000);
+        }
+
         Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "time set 0");
         Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "save-off");
         Main.instance.getServer().dispatchCommand( Main.instance.getServer().getConsoleSender(), "gamerule spectatorsGenerateChunks false");
 
         Main.instance.minSwapTime = Main.instance.getConfig().getInt("minSwapTime");
         Main.instance.maxSwapTime  = Main.instance.getConfig().getInt("maxSwapTime");
-//        Main.instance.randomTeleport(onlinePlayers.get(0).getWorld());
+        Main.instance.randomTeleport(onlinePlayers.get(0).getWorld());
 
         Main.instance.playersInGame = onlinePlayers;
 

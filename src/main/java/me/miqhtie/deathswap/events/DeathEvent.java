@@ -12,7 +12,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class DeathEvent implements Listener {
     @EventHandler
     public void death(PlayerDeathEvent event) {
-//        event.setDeathMessage(null);
         Main.instance.checkForWinner(event.getEntity());
     }
 }
